@@ -1,0 +1,331 @@
+\begin{frame}{$\Pi$ está en NP: algoritmo no determinista polinomial.}
+
+  El siguiente algoritmo está compuesto por dos subrutinas:
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } El conjunto finito $N$, la mochila $A$, el entero $K > 0$,
+    y los valores asociados a estos. \\
+    \textbf{Output: } YES en caso que la respuesta a la pregunta de
+    decisión sea verdadera, NO en otro caso.\\
+    \textbf{/* Fase adivinadora */}\\
+    \code{Seleccion} $\leftarrow$ \code{FaseAdrivinadora($N$)}\\
+    
+    \textbf{/* Fase verificadora */}\\
+    \Return \code{FaseVerificadora(Seleccion, $A$, $K$)}
+    \caption{CheckKNAPSACK}
+  \end{algorithm}
+  
+  La complejidad de este algoritmo depende de la complejidad de las subrutinas que invoca.
+
+%\begin{itemize}
+%    \begin{block}{Sample Block}
+%    This is a Sample Block, for example see \cite{wunsch2012}
+%    \end{block}
+        
+
+%\item<+-> you can remove bullet of item in case you want to include "figure" or "Equation" in itemize but without annoying bullet, just use "[]" in front of that item. you can also change symbol of bullet with this method. see "Frames/Main/Frame-I-1"
+    
+%    \item[\ding{112}]<+->
+%    $$
+%    I \doteq \int_{-\infty}^{+\infty} f(x) dx  
+%    $$
+    
+%    \item[]<+->
+%    $$
+%    J \doteq \int_{-\infty}^{+\infty} g(x) dx  
+%    $$
+%\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{...}
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } El conjunto finito $N$ y los valores asociados a este.\\
+    \textbf{Output: } Una selección de objetos.\\
+    \code{S} $\leftarrow \emptyset$.\\
+    \For{$(o_i, w_i, v_i, r_i) \in N$, $1 \leq i \leq |N|$}{
+      Lanzar una moneda equilibrada (0, 1).\\
+      Alojar el valor de tiro en una variable \code{result}.\\
+      \If{(\text{\code{result}} = 1)}{
+        \code{p} $\leftarrow 0$.\\
+        \code{introducir} $\leftarrow 1$.\\
+        \While{$p < r_i$ $\&$ \text{\code{introducir}} = 1}{
+          Lanzar una moneda equilibrada (0, 1).\\
+          Alojar el valor de tiro en una variable \code{introducir}.\\
+          \code{p} $\leftarrow p + 1$.\\
+        }
+        \code{S} $\leftarrow (o_i, w_i, v_i, p)$.
+      }
+    }
+    \Return \code{S}.
+    \caption{FaseAdivinadora}
+  \end{algorithm}
+  
+\end{frame}
+
+\begin{frame}{...}
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } El conjunto finito $N$ y los valores asociados a este.\\
+    \textbf{Output: } Una selección de objetos.\\
+    \code{S} $\leftarrow \emptyset$.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+    \For{$(o_i, w_i, v_i, r_i) \in N$, $1 \leq i \leq |N|$}{ 
+      Lanzar una moneda equilibrada (0, 1).  $\mathbf{\leftarrow} \mathcal{O}(1).$ \\
+      Alojar el valor de tiro en una variable \code{result}.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+      \If{(\text{\code{result}} = 1)}{ 
+        \code{p} $\leftarrow 0$.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+        \code{introducir} $\leftarrow 1$.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+        \While{$p < r_i$ $\&$ \text{\code{introducir}} = 1}{
+          Lanzar una moneda equilibrada (0, 1).  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+          Alojar el valor de tiro en una variable \code{introducir}.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+          \code{p} $\leftarrow p + 1$.  $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+        }  $\mathbf{\leftarrow} \mathcal{O}(|N|).$\\
+        \code{S} $\leftarrow (o_i, w_i, v_i, p)$.  $\mathbf{\leftarrow} \mathcal{O}(1).$
+      }
+    }  $\mathbf{\leftarrow} \mathcal{O}(|N|^2).$\\
+    %\Return \code{S}.
+    \caption{FaseAdivinadora}
+  \end{algorithm}
+  
+\end{frame}
+
+\begin{frame}{...}
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } Una selección de objetos $S$,  la mochila $A$, un entero $K > 0$
+    y los valores asociados a cada uno.\\
+    \textbf{Output: } YES o NO, si satisface la pregunta de decisión o no.\\
+    \code{accPeso} $\leftarrow 0$.\\
+    \code{accValor} $\leftarrow 0$.\\
+    \For{$(o_i, w_i, v_i, p_i) \in S$, $1 \leq i \leq |S|$}{
+      \code{accPeso} $\leftarrow$ \code{accPeso} + $(p_i \times w_i)$.\\
+      \code{accValor} $\leftarrow$ \code{accValor} + $(p_i \times v_i)$.
+    }
+    \If{\text{\code{accPeso}} $\leq A.C$ $\&$ \text{\code{accValor}} $=$ K}{
+      \Return YES.
+    }\Else{
+      \Return NO.
+    }
+    \caption{FaseVerificadora}
+  \end{algorithm}
+  
+\end{frame}
+
+\begin{frame}{...}
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } Una selección de objetos $S$,  la mochila $A$, un entero $K > 0$
+    y los valores asociados a cada uno.\\
+    \textbf{Output: } YES o NO, si satisface la pregunta de decisión o no.\\
+    \code{accPeso} $\leftarrow 0$. $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+    \code{accValor} $\leftarrow 0$. $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+    \For{$(o_i, w_i, v_i, p_i) \in S$, $1 \leq i \leq |S|$}{
+      \code{accPeso} $\leftarrow$ \code{accPeso} + $(p_i \times w_i)$. $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+      \code{accValor} $\leftarrow$ \code{accValor} + $(p_i \times v_i)$. $\mathbf{\leftarrow} \mathcal{O}(1).$
+    } $\mathbf{\leftarrow} \mathcal{O}(|N|).$\\
+    \If{\text{\code{accPeso}} $\leq A.C$ $\&$ \text{\code{accValor}} $=$ K}{
+      \Return YES.
+    }\Else{
+      \Return NO.
+    } $\mathbf{\leftarrow} \mathcal{O}(1).$\\
+    \caption{FaseVerificadora}
+  \end{algorithm}
+  
+\end{frame}
+
+
+\begin{frame}{$\Pi$ está en NP: algoritmo no determinista polinomial.}
+  
+  \begin{algorithm}[H]
+    \textbf{Input: } El conjunto finito $N$, la mochila $A$, el entero $K > 0$,
+    y los valores asociados a estos. \\
+    \textbf{Output: } YES en caso que la respuesta a la pregunta de
+    decisión sea verdadera, NO en otro caso.\\
+    \textbf{/* Fase adivinadora */}\\
+    \code{Seleccion} $\leftarrow$ \code{FaseAdrivinadora($N$)}. $\mathbf{\leftarrow} \mathcal{O}(|N|^2).$\\
+    
+    \textbf{/* Fase verificadora */}\\
+    \Return \code{FaseVerificadora(Seleccion, $A$, $K$)}. $\mathbf{\leftarrow} \mathcal{O}(|N|).$
+    \caption{CheckKNAPSACK}
+  \end{algorithm}
+
+  Así, concluimos que nuestro algoritmo es del orden de $\mathcal{O}(|N|^2).$\newline
+
+  De lo anterior, concluimos que $\Pi$ está en NP.
+\end{frame}
+
+
+\begin{frame}{Versión 0-1}
+     \begin{itemize}[<+->]
+     \item Dados los pesos y valores de $N$ objetos únicos, coloque estos artículos
+       en una mochila de capacidad $C$, para obtener el valor total máximo en la mochila.
+       
+     \item \textbf{Forma canónica.}
+       \begin{itemize}[<+->]
+       \item \textbf{Ejemplar genérico.} Dada una mochila $A$ con capacidad igual a $C > 0$
+         dónde $C$ es un valor entero, y
+         \[N = \{(o_1, w_1, v_1), (o_2, w_2, v_2), \dotsm, (o_n, w_n, v_n)\}\]
+         con $|N| > 0$, $N$ finito,  y para
+         \begin{enumerate}
+         \item $o_i$ un objeto. 
+         \item $w_i$ el peso asociado a $o_i$.
+         \item $v_i$ el valor asociado a $o_i$.
+         \end{enumerate}
+         con $0 < i \leq |N|$. Y $\{x_1, \dotsm, x_n\} \mapsto \{0, 1\}$.
+       \item \textbf{Enunciado de optimización.} Determinar una selección de objetos que cumplan que
+         \[\sum_{i=1}^{|N|} x_i \cdot w_i \leq C\ \text{  y  }\ \sum_{i=1}^{|N|} x_i \cdot v_i \text{ es máxima.}\]
+       \end{itemize}
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Versión 0-1}
+     \begin{itemize}[<+->]
+     \item Dados los pesos y valores de $N$ objetos de los que existen ejemplares infinitos, coloque estos artículos
+       en una mochila de capacidad $C$, para obtener el valor total máximo en la mochila.
+       
+     \item \textbf{Forma canónica de decisión.}
+       \begin{itemize}[<+->]
+       \item \textbf{Ejemplar genérico.} Dada una mochila $A$ con capacidad igual a $C > 0$
+         dónde $C$ es un valor entero, y
+         \[N = \{(o_1, w_1, v_1), (o_2, w_2, v_2), \dotsm, (o_n, w_n, v_n)\}\]
+         con $|N| > 0$, $N$ finito,  y para
+         \begin{enumerate}
+         \item $o_i$ un objeto. 
+         \item $w_i$ el peso asociado a $o_i$.
+         \item $v_i$ el valor asociado a $o_i$.
+         \end{enumerate}
+         con $0 < i \leq |N|$. Con $\{x_1, \dotsm, x_n\} \mapsto \{0, 1\}$ y un entero $K \geq 0$. 
+       \item \textbf{Pregutna de decisión.} ¿Existe una selección de objetos que cumplan que
+         \[\sum_{i=1}^{|N|} x_i \cdot w_i \leq C\ \text{  y  }\ \sum_{i=1}^{|N|} x_i \cdot v_i = K \text{ ?}\]
+       \end{itemize}
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Función $f: D_X \rightarrow D_{\Pi}$}
+  Para un ejemplar de 0-1 KNAPASACK $\{(o_1, w_1, c_1), \dotsm, (o_n, w_n, c_n), C, K\}$
+  con $1 \leq c_j \leq K$ con $j \in [1, \dotsm, n]$ y $K > 0$. Con $\{x_1, \dotsm, x_n\} \mapsto \{0, 1\}$.\newline
+
+  Buscamos construir un ejemplar en INTEGER KNAPASACK, digamos que el ejemplar producto
+  de la transformación es de la forma $\{(o'_1, w'_1, d_1), \dotsm, (o'_{2n}, w'_{2n}, d_{2n}), C', L\}$ para los que existen
+  valores $y_1, \dotsm, y_n \geq 0$ asociados a cada $o'_j$.\newline
+  
+  Sea $M = (2n)(n + 1)(K)$, definimos
+  \[
+  d_i = f_1(c_j) =
+  \begin{cases}
+    M^{n + 1} + M^j + c_j, & \text{si } j \leq n \\
+    M^{n + 1} + M^{j - n}, & \text{ En otro caso}.
+  \end{cases}
+  \]
+  para $i = 2n$, caso análogo para $f_2(w_i)$. Y \[L = f_3(K) = n \cdot M^{n + 1} + \sum_{j = 1}^{j = n}M^j + K.\]
+  Caso análogo para $f_4(C)$. Entonces
+  \[f(\{\dotsm, (o_i, w_i, c_i), \dotsm, C, K\}) =
+  \{( \dotsm, (o'_{i}, f_2(w_{i}), f_1(c_{i})), \dotsm,  f_4(C), f_3(K)\}\]
+\end{frame}
+
+\begin{frame}{Para $I \in D_X$, $f(I)$ se construye en tiempo polinomial.}
+  La construcción anterior pasa con
+  \[\sum_{j = 1}^{2n} d_j \cdot y_j = L\]
+  si y sólo si existen $x_1 \dotsm, x_n \in  \{0, 1\}$ para
+  \[\sum_{j = 1}^{n} c_j \cdot x_j = K\]
+  Basta notar que la función aplica operaciones aritméticas que son del
+  orden de $\mathcal{O}(1)$, cómo $f$ se aplica para los $n$ (de hecho para $6n + 2$)
+  valores dados, entonces nuestra complejidad de aplicar estas transformaciones para
+  un ejemplar completo es del orden de $\mathcal{O}(n)$.
+  
+\end{frame}
+
+\begin{frame}{$I \in D_X, I \in YES_X \Leftrightarrow f(I) \in YES_{\Pi}$}
+
+  \begin{block}{Observación}
+    Vamos a concentrarnos en un sólo valor cómo peso y valor de manera indistinta, es decir, nuestros ejemplares
+    estarám dados por valores enteros $\{c_1, \dotsm, c_n\}$ y un valor $K$ que indistintamente se refiere al peso
+    y valor que acota la selección de nuestros objetos.\newline
+  \end{block}
+\end{frame}
+
+
+\begin{frame}{$I \in D_X, I \in YES_X \Leftrightarrow f(I) \in YES_{\Pi}$}
+  $\Rightarrow )$ Para
+  \begin{eqnarray*}
+    \sum_{j = 1}^{2n}f(c_j)\cdot y_j = M^{n + 1} \sum_{j = 1}^{2n} y_j + \sum_{j = 1}^{n} M^j (y_j + y_{j + n})
+    + \sum_{j = 1}^{n} c_j \cdot y_j
+  \end{eqnarray*}
+  Observemos que
+  \[\sum_{j = 1}^{2n} y_j = n \Rightarrow y_j + y_{j + n} = 1\]
+  así tenemos que,
+  \begin{eqnarray*}
+    \sum_{j = 1}^{2n}f(c_j)\cdot y_j &=& M^{n + 1} \sum_{j = 1}^{2n} y_j + \sum_{j = 1}^{n} M^j (y_j + y_{j + n})
+    + \sum_{j = 1}^{n} c_j \cdot y_j\\
+    &=& M^{n + 1} \cdot n + \sum_{j = 1}^{n} M^j
+    + \sum_{j = 1}^{n} c_j \cdot y_j\\
+    &=& M^{n + 1} \cdot n + \sum_{j = 1}^{n} M^j
+    + K\\
+    &=& L.
+  \end{eqnarray*}
+  De lo cuál concluimos que una solución YES de 0-1 NKASPASACK mapea por medio
+  de $f$ a una solución YES en INTEGER KNASPASACK.
+\end{frame}
+
+\begin{frame}{...}
+   $\Leftarrow )$  Supongamos que para un ejemplar $\{c_1, \dotsm, c_n, K\}$ de $0-1$ KNAPSACK con $1 \leq c_j \leq K$ para
+  $j \in  [1, \dotsm, n]$ y $K > 0$. Así, supongamos sin pérdida de generalidad que se construye un ejemplar
+  $\{d_1, \dotsm, d_{2n}, L\}$ de INTEGER KNASPACK con $\{y_1, \dotsm y_{2n}\}$ para $y_1, \dotsm, y_{2n} \geq 0$.
+  Observemos que,
+  \[\sum_{j = 1}^{2n}d_j \cdot y_j  =
+  \underbrace{M^{n + 1}\sum_{j = 1}^{n}y_j + \sum_{j = 1}^{n}M^j \cdot y_j + \sum_{j = 1}^{n}c_j \cdot y_j}_{j \leq n}
+  + \underbrace{M^{n + 1} \sum_{j = n + 1}^{2n} y_j + \sum_{j = n + 1}^{2n}M^{j - n} \cdot y_{j}}_{\text{Otro caso}}\]  
+\end{frame}
+
+\begin{frame}{...}
+  $\Leftarrow )$ 
+  \begin{eqnarray*}
+  \sum_{j = 1}^{2n}d_j \cdot y_j  &=&
+  M^{n + 1}\sum_{j = 1}^{2n}y_j + \sum_{j = 1}^{n}M^j \cdot y_j + \sum_{j = 1}^{n}c_j \cdot y_j
+  + \sum_{j = n + 1}^{2n}M^{j - n} \cdot y_{j}\\
+  &=&
+  M^{n + 1}\sum_{j = 1}^{2n}y_j + \sum_{j = 1}^{n}M^j \cdot (y_j + y_{j + n}) + \sum_{j = 1}^{n}c_j \cdot y_j
+  \end{eqnarray*}
+  \begin{block}{Observación}
+    \[\sum_{j = n + 1}^{2n}M^{j - n} \cdot y_j = \sum_{j = 1}^{n}M^{j}y_{j+ n}\]
+  \end{block}
+\end{frame}
+
+\begin{frame}{...}
+  $\Leftarrow )$ \newline
+  Recordemos que
+  \begin{eqnarray*}
+    & & f_3(K) = L = n \cdot M^{n + 1} + \sum_{j = 1}^{n}M^j + K\\
+    &\Rightarrow& \sum_{j = 1}^{2n}d_j \cdot y_j = L\\
+    &\Rightarrow_{(*)}& M^{n + 1}\sum_{j = 1}^{2n}y_j + \sum_{j = 1}^{n}M^j \cdot (y_j + y_{j + n})
+    + \sum_{j = 1}^{n}c_j \cdot y_j = n \cdot M^{n + 1} + \sum_{j = 1}^{n}M^j + K
+  \end{eqnarray*}
+  Ahora, cada valor $y_j$ debe ser menor que la siguiente cota
+  \[\frac{L}{d_j} < n + 1 \leq \frac{M}{2nK}\]
+\end{frame}
+
+\begin{frame}{...}
+  $\Leftarrow )$ \newline
+
+  Lo anterior implica que
+  \begin{eqnarray*}
+    \sum_{j = 1}^{2n}y_j, y_j + y_{j + n}, \sum_{j = 1}^{n} c_j\cdot y_j < M
+  \end{eqnarray*}
+  podemos observar que la ecuación formado por la combinación lineal $(*)$ usa
+  potencias de $M$ y sus coeficientes son siempre más pequeños que $M$.\newline
+
+  Ahora, si $y_j + y_{j + n} = 1$ para toda $j$. Entonces alguno entre $y_j$ o $y_{j + n}$
+  es $1$. Por lo que
+  \[\sum_{2n}^{j = 1}y_j = n\ \text{ y }\ \sum_{j = 1}^{n}c_j \cdot y_j = K.\]
+  En consecuencia podemos realizar $\{y_j \dotsm, y_{n}\} \mapsto \{x_1, \dotsm, x_n\}$
+  que son candidatos a solución del problema de decisión asociado a $0-1$ KNAPSACK, cómo
+  esto es resultado del conjunto de valores $\{y_1, \dotsm, y_{2n}\}$, entonces concluimos
+  que: ``Hemos construido un ejemplar de solución YES para INTEGER KNAPSACK si el
+  ejemplar de $0-1$ KNAPSACK del cuál proviene es una solución YES''.
+\end{frame}
+
+\begin{frame}{...}
+  De los casos anteriores concluimos que
+   \[\therefore\ \ \text{ INTEGER KNAPSACK es NP-Completo.}\]
+\end{frame}

@@ -1,0 +1,78 @@
+\textbf{Pregunta 1.}
+%\noindent
+Muestra que dado un conjunto $T$ de $n$ nodos $x_1, x_2, \dots, x_n$ con valores y prioridades distintas, el árbol treap asociado a $T$ es único. Hint: utiliza inducción sobre $n$.\newline
+
+\begin{proof}
+  Procedamos por inducción en el número de nodos. Observemos que para un nodo
+
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% FIGURE 1
+  \begin{figure}[ht!]
+    \centering
+    \begin{tikzpicture}
+      %% Primer bloque:
+      \node(A) [blueV, label=180:$q$] at (0,0){};
+    \end{tikzpicture}
+  \end{figure}
+  
+  se cumple que el árbol Treap asociado a $q$ (en este caso) es
+  único.\newline
+
+  Supongamos que para un conjunto $T' = \{q_1, \dotsm, q_k\}$ de tamaño
+  $k < n$ con valores y prioridades distintas se cumple que el árbol Treap asociado
+  a $T'$ es único\footnote{Hipótesis de inducción.}.\newline
+
+  
+\tikzset{
+itria/.style={
+  draw,dashed,shape border uses incircle,
+  isosceles triangle,shape border rotate=90,yshift=-1.45cm},
+rtria/.style={
+  draw,dashed,shape border uses incircle,
+  isosceles triangle,isosceles triangle apex angle=90,
+  shape border rotate=-45,yshift=0.2cm,xshift=0.5cm},
+ritria/.style={
+  draw,dashed,shape border uses incircle,
+  isosceles triangle,isosceles triangle apex angle=110,
+  shape border rotate=-55,yshift=0.1cm},
+letria/.style={
+  draw,dashed,shape border uses incircle,
+  isosceles triangle,isosceles triangle apex angle=110,
+  shape border rotate=235,yshift=0.1cm}
+}
+
+\begin{center}
+  \begin{tikzpicture}[sibling distance=5cm, level 2/.style={sibling distance =2cm}]
+    \node[draw,fill=black] {}
+         { node[itria] {$T'$} };
+  \end{tikzpicture}
+\end{center}
+
+Ahora, observemos que un árbol Treap $T$ de $n$ nodos tiene cómo sub-hijo izquierdo un sub-árbol,
+digamos $T_1$, y cómo sub-hijo derecho un sub-árbol, digamos $T_2$. A continuación se muestra un bosquejo
+\begin{center}
+\begin{tikzpicture}[sibling distance=5cm, level 2/.style={sibling distance =2cm}]
+  \node[circle,draw,fill=blue] {}
+  child{ node[draw, fill = black] {}
+    { node[itria] {$T_1$} } 
+  }
+    child{ node[draw, fill = black] {}
+    { node[itria] {$T_2$} } 
+  };
+\node[draw] at (3,-5) 
+{
+\begin{tabular}{cl}
+\tikz\node[circle, fill = blue] {}; & Raíz \\
+\tikz\node[draw,  fill = black] {}; & Sub-árboles
+\end{tabular}
+};
+\end{tikzpicture}
+\end{center}
+
+Podemos notar que $T_1$ y $T_2$ tienen una cantidad de nodos menor que $n$. Por nuestra hipótesis
+de inducción $T_1$ y $T_2$ es único, lo que implica que $T$ es único.
+\end{proof}
+%\subsection*{Respuesta}
+
+%<Tu respuesta aquí>
+
+%\bigskip

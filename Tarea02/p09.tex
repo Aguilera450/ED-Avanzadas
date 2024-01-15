@@ -1,0 +1,28 @@
+\textbf{Pregunta 9.} Describe el proceso de dinamizar el árbol de rangos de dimensión 3.
+
+$\rhd$ \textbf{Solución:} Para este ejercicio tendremos bosques que obedezcan a su codificación
+binaria, esto es, tendremos árboles de distinto tamaño que contengan distintos elementos. ¿Cómo
+logramos esto?
+
+\begin{enumerate}
+\item Inicialmente tomemos la representación binaria de nuestro bosque, esta representación será
+en forma de cadena cómo la siguiente
+\[10101 \Rightarrow 2^4 \cdot 2^3 \cdot 2^2 \cdot 2^1 \cdot 2^0\]
+que significa que tenemos un árboles de rango con 1 nodo, 4 hojas, 16 hojas respectivamente. Nuestro caso base
+siempre será $2^0 = 1$ nodo. A partir de aquí construiremos las operaciones \textbf{inserta}, \textbf{borra}, \textbf{colsulta}. El resto de operaciones
+se aplicaran a cada árbol del bosque cómo usualmente se aplican.
+\item \textbf{Inserta.} Insertaremos punto a punto. Entonces verificamos si ya existe un árbol de rangos con un nodo (en el árbol principal).
+Si no existe, entonces nuestro elemento pasa hacer este nodo con referencias a sus subárboles en Y y Z. Si existe un árbol con un sólo nodo,
+entonces unimos nuestro nodo a este formando un nuevo árbol de codificación $2^1$. Repetimos este procedimiento consultando que no haya más de un
+árbol con una misma codificación, en el momento que lleguemos a un árbol con codificación distinta tal que no haya codificaciones repetidas terminamos.
+\item \textbf{Borra.} Esta operación es un poco más sencilla, pues basta verificar si hemos eliminado $o(n)$\footnote{o pequeña. Equivaldría a verificar una fracción lineal.} elementos al menos para reconstruir
+nuestro bosque.
+\item \textbf{Consulta.} Tomemos en cuenta que no tenemos un sólo árbol. Tenemos un bosque de árboles. Basta consultar en cada árbol hasta
+encontrar el elemento requerido o uno suficientemente cerca (en caso de no tener el elemento en ningún árbol). ¿Cuánto nos toma esto? La
+relación entre la codificación binaria y el número de árboles nos garantiza que el número de elementos en el bosque (árboles) es logarítmico
+respecto del número de hojas en el conjunto de árboles. Esto nos garantiza consultar del orden de $\mathcal{O}(\log^{d + 1} n)$ si no es un
+árbol de rangos con cascada.
+\item El resto de operaciones son las usuales aplicadas a cada elemento del bosque.
+\end{enumerate}
+
+\hfill $\lhd$

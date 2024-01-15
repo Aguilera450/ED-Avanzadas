@@ -1,0 +1,37 @@
+\textbf{\textcolor{blue}{1.}} Diseña un algoritmo de complejidad en tiempo polinomial que resuelva el problema del Agente
+del Viajero\footnote{Travelling Salesman Problem, TSP.}:
+\begin{center}
+  \textit{Dada una lista de $n$ ciudades y la distancia entre cada par de ellas, determina el tour de peso mínimo,
+    i.e. la ruta más corta que visita a todas las ciudades exactamente una vez y termina en la ciudad donde inició}.
+\end{center}
+Este algoritmo deberá hacer uso únicamente del conocimiento adquirido en el curso de Análsis de
+Algoritmos. Detalla extensamente el algoritmo, demuestra su correctud (que resuelva el problema
+planteado) y complejidad (que cumpla con ser de complejidad en tiempo polinomial). En caso de
+no lograr diseñar uno, explica por qué.\newline
+
+$\rhd$ \textbf{Solución:} Recordemos que una gráfica completa cumple que
+\begin{eqnarray*}
+  |E| &=& {|V| \choose 2}\\
+  &=& \frac{V!}{2!\cdot (|V| - 1)!}\\
+  &=& \frac{|V| \cdot (|V| - 1) \cdot (|V| - 2)!}{2!\cdot (|V| - 1)!}\\
+  &=& \frac{|V| \cdot (|V| - 1)}{2}\\
+  &\in& \mathcal{O}\left(|V|^2\right)
+\end{eqnarray*}
+y de hecho este es nuestro peor caso, sin embargo, nuestro mejor caso es que nos den un árbol y tendría aproximadamente
+$|V| - 1\in \mathcal{O}\left(|V|\right)$ aristas.\newline
+
+Ahora pensemos, ¿Si anexo pesos a las aristas cuántas maneras de elegir un camino de un vértice $v$ a $u$ en digamos
+$G$\footnote{$G$ será la gráfica con la que modelaremos nuestras ciudades y posibles caminos.} hay?
+La respuesta es del orden de las posibles combinaciones entre aristas que forman un trayecto entre $v$ y $u$, y justamente entre estas
+combinaciones vive la de menor peso. Basado en lo anterior podemos ver que si queremos encontrar cierto tipo de trayectoria ponderadas
+entre vértices, necesitamos consultar un número exponencial\footnote{El conjunto potencia de las aristas.} de posibilidades que, además, no es polinomial. \newline
+
+Ahora, nuesto problema es \textbf{TSP}. Entonces supongamos que, en efecto, podemos encontrar la ruta de peso mínimo que cumple
+con que se visiten todas las ciudades sin repetir (o ciclarse) en nuestra trayectoria en tiempo polinomial. Lo anterior implica
+que no recorremos toda la gráfica o en palabras simples ``No pasamos por todos los posibles caminos'', pues el rango de posibles
+caminos (segmentos o aristas) están entre los siguientes ordenes:
+\[\left[\mathcal{O}\left(2^{|V|}\right), \mathcal{O}\left(2^{|V|^2}\right)\right]\]
+en particular no visitamos la arista $e_i$ de nuestra gráfica, que además une dos ciudades $c_j, c_k$. ¿Qué implicaría que $e_i$ es de menor
+peso respecto a las aristas y trayectorias que logran unir a $c_j$ con $c_k$? Que existe un tour más ``barato'' que el que habíamos encontrado.
+Por lo anterior, no podemos garantizar en tiempo polinomial que nuestro tour es de costo mínimo.
+\hfill $\lhd$

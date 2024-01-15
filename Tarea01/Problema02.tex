@@ -1,0 +1,28 @@
+\textbf{\textcolor{blue}{2.}} Tenemos dos árboles binarios de búsqueda con O(n) elementos cada uno y queremos construir una lista de tamaño O(2n)  con los elementos de ambos árboles de tal manera que la lista resultante este ordenada de mayor a menor. Diseña un algoritmo de complejidad O(n) para obtener esta lista, justifica la complejidad y explica claramente tu algoritmo con un ejemplo. Nota: Toma en cuenta que el árbol binario de búsqueda puede tener elementos repetidos. (2 puntos)\newline
+
+
+$\rhd$\textbf{Solución.} El algoritmo solicitado es el siguiente: para 2 pilas $p_1$ y $p_2$,
+con una lista $l$.
+\begin{enumerate}
+\item De nuestros dos árboles, digamos $T_1$ y $T_2$, recorramos ambos con \textit{DFS in-order}
+  y guardemoslos valores devueltos en las pilas $p_1$ y $p_2$ respectivamente para cada árbol.\newline
+
+  \textbf{Obs.} Cómo $T_1$ y $T_2$ son \textit{BST}, entonces el recorrido \textit{DFS in-order}
+  nos regresa sus valores en orden ascendente desde el fondo de la pila al tope.
+\item Sacamos los valores de la pila de manera paralela, siempre insertando el tope mayor de
+  sus respectivas pilas a $l$. Si los topes, digamos $t_1$ y $t_2$, son iguales es indistinto e
+  insertamos ambos a $l$. Si una de las dos pilas termina sus elementos, entonces vaciamos la
+  restante y vamos insertando sus elementos en $l$.
+\end{enumerate}
+\textit{Análisis de complejidad.} A continuación se detalla el análisis de tiempo:
+\begin{enumerate}
+\item Recorrer una gráfica mediante DFS es del orden de $\mathcal{O}(|V| + |E|)$, en este caso
+  partícular recorremos dos árboles y por tanto su complejidad es del orden de sus nodos, por lo cuál
+  tenemos una complejidad contenida en $\mathcal{O}(\cdot|V_{T_1}| + \cdot|V_{T_2}|) = \mathcal{O}(2\cdot|V|) = \mathcal{O}(n)$. Nuevamente, insertar los elementos en las respectivas pilas es una operación del
+  orden de $\mathcal{O}(n)$.
+\item Sacar los elementos de las pilas e insertarlos a $l$ nos cuesta $\mathcal{O}(2n) = \mathcal{O}(n)$.
+  Pues basta sacar los elementos de la pila e insertar en $l$ (dos operaciones por elemento).
+\end{enumerate}
+Así, concluimos que nuestra complejidad está contenida en
+\[\mathcal{O}(n) + \mathcal{O}(n) = \mathcal{O}(n).\]
+\hfill $\lhd$

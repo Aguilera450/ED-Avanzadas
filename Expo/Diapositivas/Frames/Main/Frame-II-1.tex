@@ -1,0 +1,16 @@
+\begin{frame}{Ejemplo.}
+  Digamos que nuestro ejemplar 0-1 KNAPSACK es $\{1, 2, 3, 3\}$ dónde $k = 3$. Entonces,
+  $M = (2) \cdot (3) \cdot (3 + 1) \cdot (3) = 72$. Luego
+  \begin{itemize}[<+->]
+  \item $d_1 = 72^4 + 72^1 + 1 = 26,737,929$. 
+  \item $d_2 = 72^4 + 72^2 + 2 = 26,879,042$.
+  \item $d_3 = 72^4 + 72^3 + 3 = 27, 247, 107$.
+  \item $d_4 = 72^4 + 72^1 = 26,873,928$.
+  \item $d_5 = 72^4 + 72^2 = 26,879,040$.
+  \item $d_6 = 72^4 + 72^3 = 27,247,104$.
+  \end{itemize}
+  Así,
+  \[\sum_{j = 1}^{j = 6} d_j \cdot y_j = d_1 \cdot 2 + d_2 \cdot 1 + d_3 \cdot 0 + d_4 \cdot 0 + d_5 \cdot 0 + d_6 \cdot 1 =  11,768,767\]
+  Luego cálculamos $L = (3)(72)^4 + 72^1 + 72^2 + 72^3 + 15 = 11,768,767$. Por lo que hemos construido un ejemplar INTEGER KNAPSACK. La construcción se sigue de $f$.
+  
+\end{frame}

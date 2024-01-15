@@ -1,0 +1,26 @@
+\textbf{Pregunta 5}
+Sea $S$ un conjunto de $n$ segmentos de línea sin cruces entre ellos.
+Queremos responder rápidamente a consultas del tipo: dado un punto $p$
+encontrar al primer segmento en $S$ por el que pasa el rayo vertical con
+origen en $p$ y dirección hacia arriba. Da una estructura de datos para
+resolver este problema. Acota el tiempo de consulta y el espacio requerido
+por tu estructura. ¿Cuál es el tiempo de pre-procesamiento?\newline
+
+$\rhd$ \textbf{Solución.} Para este problema utilizaremos un árbol de segmentos
+modificando, dónde podamos consultar las intersecciones de la línea generada
+con el resto de líneas que ya se encuentran en el árbol, entonces ¿Cómo realizamos
+las consltas?\newline
+
+1. Generamos la línea $l$ a partir de $p$, entonces consultamos las listas izquierdas y derechas
+de la raíz, si la línea intersecta, al menos, un segmento entonces hemos encontrado lo deseado.\newline
+
+2. Si la línea es menor (se encuentra a la izquierda) del nodo que estemos visitando, entonces descendemos
+por el hijo izquierdo y verificamos.\newline
+
+3. Si la línea es mayor (se encuentra a la derecha) del nodo que estemos visitando, entonces descendemos
+por la derecha y verificamos.\newline
+
+4. Si verificamos y encontramos intersecciones, entonces hemos encontrado lo deseado.\newline
+
+5. Si descendemos hasta alguna hoja y no encontramos intersecciones, entonces no hay intersecciones y terminamos.
+$\lhd$

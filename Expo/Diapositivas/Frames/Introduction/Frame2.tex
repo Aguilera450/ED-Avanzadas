@@ -1,0 +1,49 @@
+\begin{frame}{Versión entera}
+     \begin{itemize}[<+->]
+     \item Dados los pesos y valores de $N$ objetos de los que puedes seleccionar varias veces el mismo objeto,
+       coloque estos objetos en una mochila de capacidad $C$, para obtener el valor total máximo en la mochila.
+       
+     \item \textbf{Forma canónica.}
+       \begin{itemize}[<+->]
+       \item \textbf{Ejemplar genérico.} Dada una mochila $A$ con capacidad igual a $C > 0$
+         dónde $C$ es un valor entero, y
+         \[N = \{(o_1, w_1, v_1, r_1), (o_2, w_2, v_2, r_i), \dotsm, (o_n, w_n, v_n, r_n)\}\]
+         con $|N| > 0$, $N$ un conjunto finito,  y para
+         \begin{enumerate}
+         \item $o_i$ un objeto. 
+         \item $w_i$ el peso asociado a $o_i$.
+         \item $v_i$ el valor asociado a $o_i$.
+         \end{enumerate}
+         con $0 < i \leq |N|$ y $0 \leq r_1, \dotsm, r_n \leq 2|N|$, es el número de veces que
+         puedo elegir $o_i$ y sus respectivos valores asociados. 
+       \item \textbf{Enunciado de optimización.} Determinar una selección de objetos que cumplan que
+         \[\sum_{i=1}^{|N|} k_i \cdot w_i \leq C\ \text{  y  }\ \sum_{i=1}^{|N|} k_i \cdot v_i \text{ es máxima.}\]
+         para $0 \leq k_i \leq r_i$ y $k_i$ asociado a cada $o_i$.
+       \end{itemize}
+     \end{itemize}
+\end{frame}
+
+\begin{frame}{Versión entera}
+     \begin{itemize}[<+->]
+     \item Dados los pesos y valores de $N$ objetos de los que existen ejemplares infinitos, coloque estos artículos
+       en una mochila de capacidad $C$, para obtener el valor total máximo en la mochila.
+       
+     \item \textbf{Forma canónica de decisión.}
+       \begin{itemize}[<+->]
+       \item \textbf{Ejemplar genérico.} Dada una mochila $A$ con capacidad igual a $C > 0$
+         dónde $C$ es un valor entero, y
+         \[N = \{(o_1, w_1, v_1, r_1), (o_2, w_2, v_2, r_i), \dotsm, (o_n, w_n, v_n, r_n)\}\]
+         con $|N| > 0$, $N$ un conjunto finito,  y para
+         \begin{enumerate}
+         \item $o_i$ un objeto. 
+         \item $w_i$ el peso asociado a $o_i$.
+         \item $v_i$ el valor asociado a $o_i$.
+         \end{enumerate}
+         con $0 < i \leq |N|$ y $0 \leq r_1, \dotsm, r_n \leq 2|N|$ , es el número de veces que
+         puedo elegir $o_i$ y sus respectivos valores asociados. Y un entero $K \geq 0$. 
+       \item \textbf{Pregutna de decisión.} ¿Existe una selección de objetos que cumplan que
+         \[\sum_{i=1}^{|N|} k_i \cdot w_i \leq C\ \text{  y  }\ \sum_{i=1}^{|N|} k_i \cdot v_i = K\]
+         para $0 \leq k_i \leq r_i$ y $k_i$ asociado a cada $o_i$?
+       \end{itemize}
+     \end{itemize}
+\end{frame}
