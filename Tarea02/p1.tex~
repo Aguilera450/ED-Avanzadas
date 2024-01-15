@@ -1,9 +1,0 @@
-\textbf{Pregunta 6}
-Decimos que un árbol binario de búsqueda $T_1$ puede ser \textsc{right-converted} a un árbol binario
-de búsqueda $T_2$ si es posible obtener $T_2$ de $T_1$ por a tráves de una serie de llamadas a la operación
-\textsc{right-rotate}.
-\begin{itemize}
-\item Da un ejemplo de dos árboles $T_1$ y $T_2$ tal que  $T_1$ no pueda ser \textsc{right-converted} en $T_2$.
-\item Demuestra que si un árbol $T_1$ puede ser \textsc{right-converted} a $T_2$, entonces $T_1$ puede ser
-  \textsc{right-converted} usando $O(n^2)$ operaciones \textsc{right-rotate}.
-\end{itemize} 

@@ -1,8 +1,0 @@
-\section*{Pregunta 2}
-\noindent Muestra que dado un conjunto $T$ de $n$ nodos $x_1, x_2, \dots, x_n$ con valores y prioridades distintas, el árbol treap asociado a $T$ es único. Hint: utiliza inducción sobre $n$.
-
-\subsection*{Respuesta}
-
-<Tu respuesta aquí>
-
-\bigskip
